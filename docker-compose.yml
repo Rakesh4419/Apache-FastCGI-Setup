@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: CDE#$rfv
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: CDE#4rfv
+    ports:
+      - "3306:3306"
+  web:
+    image: rakeshraj4419/custom-apache
+    container_name: webapp
+    depends_on:
+      - mysql
+    volumes:
+      - ./public_html/:/home/posttest/public_html/
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
